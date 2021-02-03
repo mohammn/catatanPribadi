@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>mn-belajarweb.blogspot.com</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="foto/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
-    <script src="js/all.js""></script>
+    <script src="js/all.js"></script>
     <!-- Google fonts-->
     <link href=" css/montserrat.css" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,8 +32,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top" id="namaToko" onclick="tampilModal()">Start
-                Bootstrap</a>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top" id="namaPemilikCatatan">mn-belajarweb</a>
         </div>
     </nav>
     <!-- Portfolio Section-->
@@ -181,7 +180,7 @@
 
     <div class="portfolio-modal modal fade" id="loginModal" tabindex="-1" role="dialog"
         aria-labelledby="portfolioModal1Label" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
@@ -190,10 +189,10 @@
                     <div class="container">
                         <h5 class="col-lg-12 justify-content-center mb-4">Masukan Password :</h5>
                         <div class="row justify-content-center">
-                            <div class="col-lg-2">
+                            <div class="col-lg-6">
                                 Password :
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-6">
                                 <input type="password" class="form-control" id="loginPass" />
                                 <div id="pesanErrLogin" class="badge badge-danger"></div>
                             </div>
@@ -239,27 +238,27 @@
     <script src="js/scripts.js"></script>
 
     <script>
-        if (localStorage.getItem("namaToko")) {
+        if (localStorage.getItem("namaPemilik")) {
             var date = new Date();
 
-            $("#namaToko").html(localStorage.getItem("namaToko"));
-            $("#copyright").html(localStorage.getItem("namaToko") + " " + date.getFullYear())
+            $("#namaPemilikCatatan").html(localStorage.getItem("namaPemilik"));
+            $("#copyright").html(localStorage.getItem("namaPemilik") + " " + date.getFullYear())
         }
 
-        //localStorage.setItem("data", "Bawang+cabin.png=Cabe+cake.png=Tomat+safe.png");
-        if (localStorage.getItem("pass")) {
+        //localStorage.setItem("dataCatatan", "Bawang+cabin.png=Cabe+cake.png=Tomat+safe.png");
+        if (localStorage.getItem("passCatatan")) {
             $("#loginModal").modal("show")
         } else {
             $("#daftarModal").modal("show")
         }
 
         function tampilkanDataAwal() {
-            var data = localStorage.getItem("data");
-            data = data.split("=+=");
-            var pemisah = '';
             var hasil = "";
 
-            if (localStorage.getItem("data")) {
+            if (localStorage.getItem("dataCatatan")) {
+                var data = localStorage.getItem("dataCatatan");
+                data = data.split("=+=");
+                var pemisah = '';
                 for (let i = 0; i < data.length; i++) {
                     pemisah = data[i].split('+-+');
                     hasil += '<div class="col-md-6 col-lg-4 mb-5" onClick="detailCatatan(' + i + ')"><div div class="portfolio-item mx-auto"><h4 class="text-center text-secondary text-uppercase font-weight-bold">' + pemisah[0] + '</h4><div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"> <div class="portfolio-item-caption-content text-center text-white">' + pemisah[0] + '</div></div><img class="img-fluid" src="foto/' + pemisah[1] + '" alt="" /></div></div>';
@@ -270,7 +269,7 @@
 
         function detailCatatan(id) {
             $("#detailModal").modal("show")
-            var data = localStorage.getItem("data");
+            var data = localStorage.getItem("dataCatatan");
             data = data.split("=+=");
             for (let i = 0; i < data.length; i++) {
                 if (i == id) {
@@ -289,7 +288,7 @@
         function daftarAdmin() {
             if ($("#pass").val() == $("#confirPass").val()) {
                 $("#pesanErrDaftarAdmin").html("")
-                localStorage.setItem("pass", $("#pass").val())
+                localStorage.setItem("passCatatan", $("#pass").val())
 
                 $("#daftarModal").modal("hide")
             } else {
@@ -297,15 +296,16 @@
             }
         }
         function login() {
-            if ($("#loginPass").val() == localStorage.getItem("pass")) {
+            if ($("#loginPass").val() == localStorage.getItem("passCatatan")) {
                 $("#loginPass").val("")
                 $("#loginModal").modal("hide")
                 tampilkanDataAwal()
-                if (localStorage.getItem("namaToko")) {
-                    $("#isianNama").val(localStorage.getItem("namaToko"))
+                if (localStorage.getItem("namaPemilik")) {
+                    $("#isianNama").val(localStorage.getItem("namaPemilik"))
                 }
                 tampilkanData()
-                $("#ubahPass").val(localStorage.getItem("pass"))
+                $("#namaPemilikCatatan").attr("onclick", "tampilModal()")
+                $("#ubahPass").val(localStorage.getItem("passCatatan"))
                 $("#pesanErrLogin").html("")
             } else {
                 $("#pesanErrLogin").html("Password tidak cocok")
@@ -314,9 +314,9 @@
 
         function ubahPengaturan() {
             if ($("#ubahPass").val() == $("#confirUbahPass").val()) {
-                localStorage.setItem("pass", $("#ubahPass").val())
-                localStorage.setItem("namaToko", $("#isianNama").val())
-                $("#namaToko").html(localStorage.getItem("namaToko"))
+                localStorage.setItem("passCatatan", $("#ubahPass").val())
+                localStorage.setItem("namaPemilik", $("#isianNama").val())
+                $("#namaPemilikCatatan").html(localStorage.getItem("namaPemilik"))
                 $("#pesanErrUbahPengaturan").html("")
                 $("#pengaturanModal").modal("hide")
             } else {
@@ -325,22 +325,22 @@
         }
 
         function tampilkanData() {
-            var data = localStorage.getItem("data");
-            data = data.split("=+=");
-            var pemisah = '';
             var hasil = "";
-            if (localStorage.getItem("data")) {
+            if (localStorage.getItem("dataCatatan")) {
+                var data = localStorage.getItem("dataCatatan");
+                data = data.split("=+=");
+                var pemisah = '';
                 for (let i = 0; i < data.length; i++) {
                     pemisah = data[i].split('+');
                     hasil += '<div class="col-lg-2 font-weight-bold">' + pemisah[0] + ' <button class="badge badge-danger" onClick="hapusData(' + i + ')"> <i class="fas fa-times"></i></button></div>'
                 }
             }
-            console.log(localStorage.getItem("data"))
+            console.log(localStorage.getItem("dataCatatan"))
             document.getElementById("listCatatan").innerHTML = hasil;
         }
 
         function hapusData(id) {
-            var data = localStorage.getItem("data");
+            var data = localStorage.getItem("dataCatatan");
             data = data.split("=+=");
             var hasil = "";
             for (let i = 0; i < data.length; i++) {
@@ -354,7 +354,7 @@
                 hasilAkhir += hasil[j];
                 if (j < (hasil.length - 2)) { hasilAkhir += "=+=" }
             }
-            localStorage.setItem("data", hasilAkhir)
+            localStorage.setItem("dataCatatan", hasilAkhir)
             //console.log(hasil)
             tampilkanData();
             tampilkanDataAwal()
@@ -371,12 +371,12 @@
                 foto = "default.jpg"
             }
 
-            var dataLama = localStorage.getItem("data");
+            var dataLama = localStorage.getItem("dataCatatan");
             var dataBaru = nama + "+-+" + foto + "+-+" + catatan;
             if (dataLama) {
                 dataBaru = "=+=" + dataBaru;
             }
-            localStorage.setItem("data", dataLama + dataBaru);
+            localStorage.setItem("dataCatatan", dataLama + dataBaru);
             var nama = $("#isianJudulCatatan").val("");
             var foto = $("#foto").val("");
             var foto = $("#catatan").val("");
