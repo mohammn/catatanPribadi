@@ -291,6 +291,7 @@
                 localStorage.setItem("passCatatan", $("#pass").val())
 
                 $("#daftarModal").modal("hide")
+                $("#namaPemilikCatatan").attr("onclick", "tampilModal()")
             } else {
                 $("#pesanErrDaftarAdmin").html("Konfirmasi Password tidak cocok")
             }
